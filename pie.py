@@ -2,11 +2,17 @@
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 import random
+import numpy as np
 
 # Python program to create
 # a pdf file
 from fpdf import FPDF
 
+def zerolistmaker(n):
+    listofzeros = [0] * n
+    return listofzeros
+
+# This function is to create a random color hex code
 def random_color():
     return "#{}{}{}{}{}{}".format(*(random.choice("0123456789abcdef") for _ in range(6)))
 
@@ -15,10 +21,12 @@ def show_plot(activities,slices):
      # color for each label
      colors = [random_color() for _ in range(len(activities))]
      # colors = ['r', 'y','g', 'b'] #todo: add random colors to match actvities list
+
+     explode = zerolistmaker(len(activities))
      
      # plotting the pie chart
      plt.pie(slices, labels = activities, colors=colors, 
-          startangle=90, shadow = True, explode = (0, 0.1,0), #add explode to match (make it dynamic)
+          startangle=90, shadow = True, explode = explode,
           radius = 1.2,pctdistance=0.85, autopct = '%1.0f%%')
                # radius = 1.2,pctdistance=0.85, autopct = '%1.1f%%')
 
@@ -37,12 +45,12 @@ def show_plot(activities,slices):
 
      axes = plt.axes([0.81, 0.000001, 0.1, 0.075])
      bnext = Button(axes, 'Create',color="grey")
-     bnext.on_clicked(show_report)
+     bnext.on_clicked(show_report(activities))
 
      # showing the plot
      plt.show()
  
-def show_report(*args, **kwargs):
+def show_report(activties, **kwargs):
     # save FPDF() class into a 
     # variable pdf
     pdf = FPDF()
@@ -60,7 +68,7 @@ def show_report(*args, **kwargs):
  
     # add another cell
      
-    pdf.cell(200, 10, txt = f"Here we will create the pdf report {TYPE1} blah blah blah blah blah blah",
+    pdf.cell(200, 10, txt = f"Here we will create the pdf report {activties[0]} blah blah blah blah blah blah",
          ln = 2, align = 'L')
  
     # save the pdf with name .pdf
