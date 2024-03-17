@@ -8,6 +8,15 @@ import numpy as np
 # a pdf file
 from fpdf import FPDF
 
+
+#TODO : 1) Protect the input of numbers 
+#       2) protect the input from accepting negative numbers
+#       3) Concatnate text in python
+#       4) Write the report of the final project
+#       5) finish 5-10 types of CO2 emissions
+#       6) Try to seperate text report
+#       7) Make readme file for Github
+
 def zerolistmaker(n):
     listofzeros = [0] * n
     return listofzeros
@@ -38,6 +47,7 @@ def show_plot(activities,slices):
      centre_circle = plt.Circle((0,0),0.90,fc='white')
      fig = plt.gcf()
      fig.gca().add_artist(centre_circle)
+     #fig.suptitle = "Emission Report Graph"
 
      # Equal aspect ratio ensures that pie is drawn as a circle
      plt.axis('equal')  
@@ -67,9 +77,18 @@ def show_report(activties, **kwargs):
          ln = 1, align = 'C')
  
     # add another cell
-     
-    pdf.cell(200, 10, txt = f"Here we will create the pdf report {activties[0]} blah blah blah blah blah blah",
-         ln = 2, align = 'L')
+    text = ""
+    new_line = '\n'
+    if any("car" in s for s in activties):
+        text = " This comprehensive report examines the critical issue of CO2 emissions from automobiles, a significant contributor to global greenhouse gas emissions. With transportation being a major source of CO2 emissions worldwide, understanding the environmental impact of different types of vehicles is crucial for developing effective strategies to mitigate climate change.\
+        \n\n- Recommendations: \n \
+        Encourage the adoption of EVs through incentives and infrastructure development.\
+        \n- Promote hybrid vehicles as a transitional solution for those unable to switch to EVs immediately.\
+        \n- Implement stricter emissions standards and promote fuel-efficient technologies to reduce CO2 emissions from gasoline vehicles.\
+        \
+        \n\n- Conclusion: Transitioning to EVs and promoting cleaner transportation technologies is crucial for mitigating the environmental impact of car emissions and combating climate change."
+    pdf.multi_cell(200, 10, txt = f"{text}",
+         align = 'L')
  
     # save the pdf with name .pdf
     pdf.output("emission_report.pdf")   
