@@ -27,9 +27,9 @@ This is a simple emisssion report generator, written in `Python` by `@wakka-2.` 
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://ibb.co/PT9PLzz" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/N0yJdq6y/Capture1.png" alt="project-screenshot" width="400" height="400/">
 
-<img src="https://ibb.co/z89z1K7" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/LXLyMt02/Capture2.png" alt="project-screenshot" width="400" height="400/">
 
 ```
 What the program does? 
