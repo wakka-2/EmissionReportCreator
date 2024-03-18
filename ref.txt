@@ -2,3 +2,8 @@ https://www.geeksforgeeks.org/graph-plotting-in-python-set-1/
 https://stackoverflow.com/questions/51774639/python-gui-to-accept-user-input-in-pop-up
 https://medium.com/@kvnamipara/a-better-visualisation-of-pie-charts-by-matplotlib-935b7667d77f
 https://www.geeksforgeeks.org/convert-text-and-text-file-to-pdf-using-python/
+https://www.youtube.com/watch?v=ZQAnkjfvZAw&ab_channel=ThePyCoach
+https://stackoverflow.com/questions/946011/sqlite-add-primary-key
+https://note.nkmk.me/en/python-string-concat/
+https://stackoverflow.com/questions/52823404/easier-way-to-read-sqlite3-row-into-object
+https://www.ics-shipping.org/current-issue/co2-emission-reporting/
