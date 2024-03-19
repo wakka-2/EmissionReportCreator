@@ -31,7 +31,6 @@ def random_color():
 def show_plot(activities,slices):
      # color for each label
      colors = [random_color() for _ in range(len(activities))]
-     # colors = ['r', 'y','g', 'b'] #todo: add random colors to match actvities list
 
      explode = zerolistmaker(len(activities))
      
@@ -39,8 +38,6 @@ def show_plot(activities,slices):
      plt.pie(slices, labels = activities, colors=colors, 
           startangle=90, shadow = True, explode = explode,
           radius = 1.2,pctdistance=0.85, autopct = '%1.0f%%')
-               # radius = 1.2,pctdistance=0.85, autopct = '%1.1f%%')
-
      
      # plotting legend
      plt.legend()
@@ -91,7 +88,7 @@ def show_report(activties, **kwargs):
      emission_list.append(Emission.Emission(*e))
        
     # add another cell
-     print("sdyufigdfods",emission_list)
+     print("test",emission_list)
     text = ""
     for activity in activties:
      print(activity)
@@ -100,17 +97,6 @@ def show_report(activties, **kwargs):
             if(emiss.name.lower() == activity.lower()):
                 text = "\n \n"
                 text += emiss.emission_reduction_tips
-                
-     #continue
-#     if any("car" in s for s in activties):
-#         text = " This comprehensive report examines the critical issue of CO2 emissions from automobiles, a significant contributor to global greenhouse gas emissions. With transportation being a major source of CO2 emissions worldwide, understanding the environmental impact of different types of vehicles is crucial for developing effective strategies to mitigate climate change.\
-#         \n\n- Recommendations: \n \
-#         Encourage the adoption of EVs through incentives and infrastructure development.\
-#         \n- Promote hybrid vehicles as a transitional solution for those unable to switch to EVs immediately.\
-#         \n- Implement stricter emissions standards and promote fuel-efficient technologies to reduce CO2 emissions from gasoline vehicles.\
-#         \
-#         \n\n- Conclusion: Transitioning to EVs and promoting cleaner transportation technologies is crucial for mitigating the environmental impact of car emissions and combating climate change."
-                        
      
      pdf.multi_cell(200, 10, txt = f"{text}",align = 'L')
     # save the pdf with name .pdf

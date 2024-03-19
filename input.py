@@ -8,7 +8,7 @@ from pie import show_plot
 
 root = tk.Tk()
 
-def do_stuff():
+def get_emissions_input():
     df = pd.DataFrame()
     try:
         try:
@@ -57,7 +57,7 @@ tk.Label(root, text="Enter the number of CO2 emissions : ").grid(row=0, column=0
 parts = tk.Entry(root)
 parts.grid(row=1, column=0)
 
-tk.Button(root, text="Submit", command=do_stuff).grid(row=2, column=0)
+tk.Button(root, text="Submit", command=get_emissions_input).grid(row=2, column=0)
 
 lbl_df = tk.Label(root, text="")
 lbl_df.grid(row=3, column=0)
