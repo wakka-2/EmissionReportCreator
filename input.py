@@ -2,13 +2,56 @@ import tkinter as tk
 import tkinter.simpledialog as simpledialog
 import pandas as pd
 from tkinter import messagebox
+import matplotlib.pyplot as plt
 
 from pie import show_plot
 
 
 root = tk.Tk()
 
+def validate_input(sp):
+    try:
+            try:
+                int(sp)
+            except ValueError:
+                messagebox.showwarning("Illegal Value", "Not an integer.\nPlease try again.")
+            assert int(sp) > 0
+    except AssertionError:
+            messagebox.showwarning("Illegal Value", "Only positive numbers.\nPlease try again.")
+
 def get_emissions_input():
+    avgElectercityBill = simpledialog.askstring("Data input window" , "What is your avg monthly electrcity bill in euros?" )
+    validate_input(avgElectercityBill)
+    avgNaturalBill = simpledialog.askstring("Data input window" , "What is your avg monthly natural gas bill in euros?" )
+    validate_input(avgNaturalBill)
+    avgFuelBill = simpledialog.askstring("Data input window" , "What is your avg monthly fuel bill for transportation in euros?" )
+    validate_input(avgFuelBill)
+    
+    wasteInKG = simpledialog.askstring("Data input window" , "How much waste do you generate per month in kilograms?" )
+    validate_input(wasteInKG)
+    wasteRecycled = simpledialog.askstring("Data input window" , "How much of that waste is recycled or composted (in percentagre)?" )
+    validate_input(wasteRecycled)
+
+    kilometersTraveled = simpledialog.askstring("Data input window" , "How many kilometers do your employees travel per year for business purpose?" )
+    avgFuelEffecincy = simpledialog.askstring("Data input window" , "What is the avg feul effecincy of the veichles used for business travel in liters per 100 kilometers?" )
+    validate_input(avgFuelEffecincy)
+
+
+    energyKGCO2 = (int(avgElectercityBill) * 12 * 0.0005) + (int(avgNaturalBill) * 12 + 0.00553) + (int(avgFuelBill) * 12 *2.32)
+    wasteKGCO2 = (int(wasteInKG) * 12 * (0.57 - int(wasteRecycled)/100))
+    businessTravelKGCO2 = int(kilometersTraveled) * (1/(int(avgFuelEffecincy) * 2.31))
+
+    x = [energyKGCO2, wasteKGCO2, businessTravelKGCO2*100]
+    labels = ['Energy KGCO2', 'Waste KGCO2', 'Business Travel KGCO2']
+
+    fig, ax = plt.subplots()
+    ax.pie(x, labels=labels, autopct='%.1f%%')
+    ax.set_title('CO2 emission in KG')
+    plt.tight_layout()
+
+    # showing the plot
+    plt.show()
+
     df = pd.DataFrame()
     try:
         try:
@@ -35,7 +78,6 @@ def get_emissions_input():
             except ValueError:
                 messagebox.showwarning("Illegal Value", "Not an integer.\nPlease try again.")
             assert int(st) > 0
-            #assert int(st) > 0
         except AssertionError:
             messagebox.showwarning("Illegal Value", "Only positive numbers.\nPlease try again.")
             break
